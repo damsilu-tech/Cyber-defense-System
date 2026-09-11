@@ -48,7 +48,7 @@ CORS(app)  # allow the dashboard to be hosted separately from the API if needed
 
 @app.get("/")
 def index():
-    return send_from_directory(BASE_DIR, "dashboard_live.html")
+    return send_from_directory(BASE_DIR, "index.html")
 
 
 @app.get("/health")
