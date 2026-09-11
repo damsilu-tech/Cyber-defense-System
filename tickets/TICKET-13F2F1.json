@@ -1,0 +1,8 @@
+{
+  "ticket_id": "TICKET-13F2F1",
+  "alert_id": "demo-001",
+  "created_at": "2026-09-11T11:06:49.891042+00:00",
+  "severity": "High",
+  "summary": "C2 Beaconing",
+  "status": "open"
+}

@@ -1,0 +1,6 @@
+id,time,product,signature,srcip,destination_ip,username,sha256,domain,url,source
+demo-101,2026-09-08T11:00:00Z,SIEM-sim,brute_force,203.0.113.90,10.0.0.5,admin,,,,SIEM-batch
+demo-102,2026-09-08T11:05:00Z,EDR-sim,malware_detection,10.0.0.61,,m.gunawardena,5f4dcc3b5aa765d61d8327deb882cf99,,,EDR-batch
+demo-103,2026-09-08T11:12:00Z,EDR-sim,c2_beacon,10.0.0.18,185.220.101.4,,,malicious-c2-example.net,,EDR-batch
+demo-104,2026-09-08T11:20:00Z,SIEM-sim,login_success,10.0.0.102,10.0.0.1,t.wickrama,,,,SIEM-batch
+demo-105,2026-09-08T11:30:00Z,IDS-sim,port_scan,198.51.100.55,10.0.0.0,,,,,IDS-batch

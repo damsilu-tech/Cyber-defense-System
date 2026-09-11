@@ -1,0 +1,85 @@
+[
+  {
+    "id": "demo-001",
+    "time": "2026-09-08T09:12:00Z",
+    "product": "EDR-sim",
+    "signature": "c2_beacon",
+    "srcip": "10.0.0.15",
+    "destination_ip": "185.220.101.4",
+    "username": "j.perera",
+    "domain": "malicious-c2-example.net",
+    "source": "EDR-sim"
+  },
+  {
+    "id": "demo-002",
+    "time": "2026-09-08T09:20:00Z",
+    "product": "SIEM-sim",
+    "signature": "brute_force",
+    "srcip": "203.0.113.44",
+    "destination_ip": "10.0.0.5",
+    "username": "admin",
+    "source": "SIEM-sim"
+  },
+  {
+    "id": "demo-003",
+    "time": "2026-09-08T09:35:00Z",
+    "product": "EDR-sim",
+    "signature": "malware_detection",
+    "srcip": "10.0.0.22",
+    "sha256": "44d88612fea8a8f36de82e1278abb02f",
+    "username": "n.silva",
+    "source": "EDR-sim"
+  },
+  {
+    "id": "demo-004",
+    "time": "2026-09-08T09:41:00Z",
+    "product": "SIEM-sim",
+    "signature": "login_success",
+    "srcip": "10.0.0.101",
+    "destination_ip": "10.0.0.1",
+    "username": "k.fernando",
+    "source": "SIEM-sim"
+  },
+  {
+    "id": "demo-005",
+    "time": "2026-09-08T09:50:00Z",
+    "product": "EmailGateway-sim",
+    "signature": "phishing_link_clicked",
+    "srcip": "10.0.0.77",
+    "url": "http://secure-login-update-verify.com/reset",
+    "domain": "secure-login-update-verify.com",
+    "username": "a.jayasinghe",
+    "source": "EmailGateway-sim"
+  },
+  {
+    "id": "demo-006",
+    "time": "2026-09-08T10:02:00Z",
+    "product": "DLP-sim",
+    "signature": "large_data_transfer",
+    "srcip": "10.0.0.30",
+    "destination_ip": "45.33.32.156",
+    "username": "svc-backup",
+    "source": "DLP-sim"
+  },
+  {
+    "id": "demo-007",
+    "time": "2026-09-08T10:10:00Z",
+    "product": "IDS-sim",
+    "signature": "port_scan",
+    "srcip": "198.51.100.23",
+    "destination_ip": "10.0.0.0",
+    "source": "IDS-sim"
+  },
+  {
+    "id": "demo-008",
+    "time": "2026-09-08T10:18:00Z",
+    "product": "EDR-sim",
+    "signature": "ransomware_behavior",
+    "srcip": "10.0.0.44",
+    "sha256": "e99a18c428cb38d5f260853678922e03",
+    "username": "r.bandara",
+    "destination_ip": "91.219.237.244",
+    "domain": "ransom-c2-payment.onion.link",
+    "source": "EDR-sim"
+  }
+]

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Defense Pipeline // SOC Dashboard (Live)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root{--bg:#070b12;--panel:#0d1420;--panel2:#101a2b;--border:#1b2942;--cyan:#22d3ee;--green:#34d399;--text:#cbd5e1;}
+  *{box-sizing:border-box}
+  body{background:radial-gradient(circle at 20% 0%,#0b1622 0%,var(--bg) 55%);font-family:'Inter',sans-serif;color:var(--text)}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:10px}
+  .glow-border{border:1px solid rgba(34,211,238,.35);box-shadow:0 0 18px rgba(34,211,238,.06),inset 0 0 30px rgba(34,211,238,.02)}
+  .stage-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;transition:all .35s ease}
+  .stage-active{border-color:var(--cyan);box-shadow:0 0 16px rgba(34,211,238,.35);}
+  .stage-done{border-color:var(--green);background:linear-gradient(180deg,rgba(52,211,153,.08),transparent)}
+  .stage-error{border-color:#f87171;background:linear-gradient(180deg,rgba(248,113,113,.1),transparent)}
+  .stage-dot{width:10px;height:10px;border-radius:999px;background:#334155;transition:all .3s}
+  .stage-active .stage-dot{background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 1s infinite}
+  .stage-done .stage-dot{background:var(--green);box-shadow:0 0 8px var(--green)}
+  .stage-error .stage-dot{background:#f87171;box-shadow:0 0 8px #f87171}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .badge{font-weight:700;letter-spacing:.03em;padding:.35rem .9rem;border-radius:999px;font-size:.8rem}
+  .badge-Low{background:rgba(52,211,153,.15);color:#34d399;border:1px solid #34d399}
+  .badge-Medium{background:rgba(250,204,21,.15);color:#facc15;border:1px solid #facc15}
+  .badge-High{background:rgba(251,146,60,.15);color:#fb923c;border:1px solid #fb923c}
+  .badge-Critical{background:rgba(248,113,113,.18);color:#f87171;border:1px solid #f87171;animation:critblink 1.4s infinite}
+  .badge-UNCLASSIFIED{background:rgba(148,163,184,.15);color:#94a3b8;border:1px solid #94a3b8}
+  @keyframes critblink{0%,100%{box-shadow:0 0 4px rgba(248,113,113,.3)}50%{box-shadow:0 0 16px rgba(248,113,113,.8)}}
+  .conf-track{background:#111c2e;border-radius:999px;height:10px;overflow:hidden;border:1px solid var(--border)}
+  .conf-fill{height:100%;background:linear-gradient(90deg,#22d3ee,#34d399);transition:width 1s ease}
+  .terminal{background:#050a10;border:1px solid #16233a;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:#4ade80;min-height:140px}
+  .terminal .line{opacity:0;animation:fadein .3s forwards}
+  @keyframes fadein{to{opacity:1}}
+  table.ioc th{text-align:left;color:#64748b;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+  table.ioc td, table.ioc th{padding:.5rem .75rem;border-bottom:1px solid var(--border)}
+  .btn-primary{background:linear-gradient(90deg,#0ea5b7,#0d9488);color:#04121a;font-weight:700}
+  .btn-primary:hover{filter:brightness(1.12)}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed}
+  .btn-ghost{border:1px solid var(--border);color:var(--cyan)}
+  .btn-ghost:hover{background:rgba(34,211,238,.08)}
+  select.sample-select{background:#050a10;border:1px solid var(--border);color:var(--cyan)}
+  .report-body h1{font-size:1.3rem;font-weight:700;color:#e2e8f0;margin:.4rem 0}
+  .report-body h2{font-size:1.05rem;font-weight:700;color:var(--cyan);margin:1rem 0 .4rem;border-bottom:1px solid var(--border);padding-bottom:.25rem}
+  .report-body h3{font-size:.92rem;font-weight:600;color:#94a3b8;margin:.6rem 0 .3rem}
+  .report-body p{font-size:.85rem;line-height:1.6;margin:.3rem 0}
+  .report-body blockquote{border-left:3px solid var(--cyan);padding-left:.75rem;color:#94a3b8;font-style:italic;margin:.4rem 0}
+  .report-body table{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.8rem}
+  .report-body td,.report-body th{border:1px solid var(--border);padding:.4rem .6rem}
+  .report-body th{background:#0f1a2b;color:#7dd3fc}
+  .report-body code{background:#0f1a2b;color:var(--cyan);padding:.05rem .35rem;border-radius:4px;font-size:.78rem}
+  .report-body hr{border-color:var(--border);margin:.6rem 0}
+  ::placeholder{color:#475569}
+</style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+<div class="max-w-6xl mx-auto">
+
+  <header class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-bold text-slate-100">AI-Powered Cyber Defense System</h1>
+      <p class="text-sm text-slate-500 mono">SOC Alert Triage Pipeline — LIVE backend (Flask + real pipeline)</p>
+    </div>
+    <div id="apiStatus" class="hidden md:flex items-center gap-2 mono text-xs rounded-full px-3 py-1 border">
+      <span id="apiDot" class="w-2 h-2 rounded-full bg-slate-500"></span> <span id="apiStatusText">checking API...</span>
+    </div>
+  </header>
+
+  <!-- 1. Alert Input Panel -->
+  <section class="panel p-5 mb-6">
+    <h2 class="text-cyan-400 font-semibold mb-3 flex items-center gap-2"><span class="mono">01</span> Alert Input</h2>
+    <textarea id="alertInput" rows="7" class="w-full mono text-xs bg-[#050a10] border border-[#16233a] rounded-lg p-3 text-emerald-300 focus:outline-none focus:border-cyan-500" placeholder='Paste a raw JSON alert here, e.g. {"id":"demo-001","signature":"c2_beacon", ...}'></textarea>
+    <div class="flex flex-wrap items-center gap-3 mt-3">
+      <select id="sampleSelect" class="sample-select mono text-xs rounded-lg px-2 py-2"><option value="">Load Sample ▾</option></select>
+      <button id="runBtn" class="btn-primary px-5 py-2 rounded-lg text-sm mono">▶ Run Pipeline</button>
+      <span id="inputError" class="text-red-400 text-xs mono self-center"></span>
+    </div>
+  </section>
+
+  <!-- 2. Pipeline Progress -->
+  <section class="mb-6">
+    <h2 class="text-cyan-400 font-semibold mb-3 flex items-center gap-2"><span class="mono">02</span> Pipeline Progress</h2>
+    <div id="stages" class="grid grid-cols-2 md:grid-cols-5 gap-3"></div>
+  </section>
+
+  <!-- 3. Results Dashboard -->
+  <section id="resultsSection" class="panel glow-border p-5 mb-6 hidden">
+    <h2 class="text-cyan-400 font-semibold mb-4 flex items-center gap-2"><span class="mono">03</span> Classification Results</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <span id="severityBadge" class="badge">—</span>
+          <span id="attackType" class="text-lg font-semibold text-slate-100"></span>
+        </div>
+        <p class="text-xs text-slate-500 mono">MITRE ATT&CK Technique</p>
+        <p id="mitre" class="mono text-sm text-cyan-300"></p>
+        <div>
+          <p class="text-xs text-slate-500 mono mb-1">AI Confidence Score: <span id="confVal" class="text-slate-300"></span></p>
+          <div class="conf-track"><div id="confFill" class="conf-fill" style="width:0%"></div></div>
+        </div>
+        <p class="text-xs text-slate-600 mono" id="classSourceNote"></p>
+      </div>
+      <div>
+        <p class="text-xs text-slate-500 mono mb-1">AI Justification</p>
+        <blockquote id="justification" class="text-sm text-slate-300 border-l-2 border-cyan-500 pl-3 leading-relaxed"></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. IOCs Table -->
+  <section id="iocSection" class="panel p-5 mb-6 hidden">
+    <h2 class="text-cyan-400 font-semibold mb-3 flex items-center gap-2"><span class="mono">04</span> Indicators of Compromise</h2>
+    <div class="overflow-x-auto"><table class="ioc w-full mono" id="iocTable">
+      <thead><tr><th>Field</th><th>Value</th><th>Reputation</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <!-- 5. Response Actions Log -->
+  <section id="responseSection" class="panel p-5 mb-6 hidden">
+    <h2 class="text-cyan-400 font-semibold mb-3 flex items-center gap-2"><span class="mono">05</span> Response Actions Log</h2>
+    <div id="terminal" class="terminal p-4"></div>
+  </section>
+
+  <!-- 6. Report Preview -->
+  <section id="reportSection" class="panel p-6 mb-10 hidden">
+    <h2 class="text-cyan-400 font-semibold mb-3 flex items-center gap-2"><span class="mono">06</span> Generated Incident Report</h2>
+    <div id="reportBody" class="report-body"></div>
+  </section>
+
+</div>
+
+<script>
+const API_BASE = ''; // same-origin: Flask serves this file, so relative paths work
+
+const STAGE_DEFS = [
+  {id:'ingest', label:'Ingest', desc:'Normalize alert schema'},
+  {id:'enrich', label:'Enrich', desc:'Query threat intel'},
+  {id:'classify', label:'Classify', desc:'AI severity verdict'},
+  {id:'report', label:'Report', desc:'Generate markdown'},
+  {id:'respond', label:'Respond', desc:'Orchestrate actions'},
+];
+
+const stagesEl = document.getElementById('stages');
+STAGE_DEFS.forEach(s=>{
+  const el = document.createElement('div');
+  el.className = 'stage-card p-3 text-center';
+  el.id = 'stage-'+s.id;
+  el.innerHTML = `<div class="flex items-center justify-center gap-2 mb-1"><span class="stage-dot"></span><span class="font-semibold text-sm text-slate-200">${s.label}</span></div><p class="mono text-[11px] text-slate-500 status">idle</p>`;
+  stagesEl.appendChild(el);
+});
+
+function setStage(id, state, text){
+  const el = document.getElementById('stage-'+id);
+  el.classList.remove('stage-active','stage-done','stage-error');
+  if(state) el.classList.add(state);
+  el.querySelector('.status').textContent = text;
+}
+function resetStages(){ STAGE_DEFS.forEach(s=>setStage(s.id, null, 'idle')); }
+
+function termLine(text, delayMs){
+  const term = document.getElementById('terminal');
+  setTimeout(()=>{
+    const d = document.createElement('div');
+    d.className='line';
+    d.textContent = `[${new Date().toISOString()}] ${text}`;
+    term.appendChild(d);
+    term.scrollTop = term.scrollHeight;
+  }, delayMs);
+}
+
+// tiny markdown -> html renderer (headings, bold, blockquote, table, hr, code, list)
+function mdToHtml(md){
+  const lines = (md||'').split('\n');
+  let html=''; let inTable=false;
+  for(let i=0;i<lines.length;i++){
+    let l = lines[i];
+    if(/^---+$/.test(l.trim())){ html+='<hr>'; continue; }
+    if(/^\|/.test(l.trim())){
+      const cells = l.trim().split('|').filter(c=>c.trim()!=='').map(c=>c.trim());
+      if(/^:?-+:?$/.test(cells.join(''))){ continue; }
+      if(!inTable){ html+='<table><thead><tr>'; cells.forEach(c=>html+=`<th>${inlineMd(c)}</th>`); html+='</tr></thead><tbody>'; inTable=true; }
+      else { html+='<tr>'; cells.forEach(c=>html+=`<td>${inlineMd(c)}</td>`); html+='</tr>'; }
+      continue;
+    } else if(inTable){ html+='</tbody></table>'; inTable=false; }
+    if(l.startsWith('### ')){ html+=`<h3>${inlineMd(l.slice(4))}</h3>`; continue; }
+    if(l.startsWith('## ')){ html+=`<h2>${inlineMd(l.slice(3))}</h2>`; continue; }
+    if(l.startsWith('# ')){ html+=`<h1>${inlineMd(l.slice(2))}</h1>`; continue; }
+    if(l.startsWith('> ')){ html+=`<blockquote>${inlineMd(l.slice(2))}</blockquote>`; continue; }
+    if(l.startsWith('- ')){ html+=`<p>&bull;&nbsp; ${inlineMd(l.slice(2))}</p>`; continue; }
+    if(l.trim()===''){ continue; }
+    html+=`<p>${inlineMd(l)}</p>`;
+  }
+  if(inTable) html+='</tbody></table>';
+  return html;
+}
+function inlineMd(t){
+  return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>');
+}
+
+// --- API status check ---
+async function checkApi(){
+  const dot = document.getElementById('apiDot');
+  const txt = document.getElementById('apiStatusText');
+  const wrap = document.getElementById('apiStatus');
+  wrap.classList.remove('hidden');
+  try{
+    const r = await fetch(API_BASE+'/health');
+    if(!r.ok) throw new Error();
+    dot.className='w-2 h-2 rounded-full bg-green-400 animate-pulse';
+    txt.textContent='API online';
+    wrap.className='hidden md:flex items-center gap-2 mono text-xs rounded-full px-3 py-1 border border-green-800 text-green-400';
+  }catch(e){
+    dot.className='w-2 h-2 rounded-full bg-red-400';
+    txt.textContent='API unreachable';
+    wrap.className='hidden md:flex items-center gap-2 mono text-xs rounded-full px-3 py-1 border border-red-800 text-red-400';
+  }
+}
+checkApi();
+
+// --- Load sample alerts from the real sample_alerts.json via the API ---
+async function loadSamples(){
+  const sel = document.getElementById('sampleSelect');
+  try{
+    const r = await fetch(API_BASE+'/api/sample-alerts');
+    if(!r.ok) throw new Error();
+    const alerts = await r.json();
+    alerts.forEach(a=>{
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify(a);
+      opt.textContent = `${a.id || a.alert_id || '?'} — ${a.signature || a.alert_type || 'unknown'}`;
+      sel.appendChild(opt);
+    });
+  }catch(e){
+    const opt = document.createElement('option');
+    opt.disabled = true;
+    opt.textContent = 'Could not load samples (API offline)';
+    sel.appendChild(opt);
+  }
+}
+loadSamples();
+
+document.getElementById('sampleSelect').onchange = (e)=>{
+  if(e.target.value) document.getElementById('alertInput').value = JSON.stringify(JSON.parse(e.target.value), null, 2);
+};
+
+document.getElementById('runBtn').onclick = async ()=>{
+  const errEl = document.getElementById('inputError');
+  const runBtn = document.getElementById('runBtn');
+  errEl.textContent='';
+  let raw;
+  try{ raw = JSON.parse(document.getElementById('alertInput').value || '{}'); }
+  catch(e){ errEl.textContent='Invalid JSON — check syntax.'; return; }
+  if(!Object.keys(raw).length){ errEl.textContent='Paste an alert or pick a sample first.'; return; }
+
+  runBtn.disabled = true;
+  resetStages();
+  ['resultsSection','iocSection','responseSection','reportSection'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  document.getElementById('terminal').innerHTML='';
+
+  setStage('ingest','stage-active','Normalizing alert schema...');
+
+  const fetchPromise = fetch(API_BASE+'/api/run', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(raw),
+  }).then(async r=>{
+    const data = await r.json();
+    if(!r.ok) throw new Error(data.error || `Request failed (${r.status})`);
+    return data;
+  });
+
+  // Visually step through ingest/enrich/classify while the real request is in flight
+  setTimeout(()=>{ setStage('ingest','stage-done','complete'); setStage('enrich','stage-active','Querying threat-intel feeds...'); }, 350);
+  setTimeout(()=>{ setStage('enrich','stage-done','complete'); setStage('classify','stage-active','Awaiting AI classification...'); }, 800);
+  setTimeout(()=>{ setStage('classify','stage-done','complete'); setStage('report','stage-active','Rendering report...'); }, 1300);
+  setTimeout(()=>{ setStage('report','stage-done','complete'); setStage('respond','stage-active','Running decision matrix...'); }, 1700);
+
+  let data;
+  try{
+    data = await fetchPromise;
+  }catch(err){
+    ['ingest','enrich','classify','report','respond'].forEach(id=>{
+      const el = document.getElementById('stage-'+id);
+      if(!el.classList.contains('stage-done')) setStage(id,'stage-error','failed');
+    });
+    errEl.textContent = 'Pipeline error: '+err.message;
+    runBtn.disabled = false;
+    return;
+  }
+
+  STAGE_DEFS.forEach(s=>setStage(s.id,'stage-done','complete'));
+
+  const cls = data.classification || {};
+  const severity = cls.severity || 'UNCLASSIFIED';
+
+  // Results Dashboard
+  const badge = document.getElementById('severityBadge');
+  badge.textContent = severity;
+  badge.className = 'badge badge-'+severity;
+  document.getElementById('attackType').textContent = cls.attack_type || '—';
+  document.getElementById('mitre').textContent = cls.mitre_technique || 'Not identified';
+  const conf = cls.confidence_score ?? 0;
+  document.getElementById('confVal').textContent = conf+'/100';
+  document.getElementById('confFill').style.width = '0%';
+  setTimeout(()=>{document.getElementById('confFill').style.width = conf+'%';}, 100);
+  document.getElementById('justification').textContent = cls.justification || 'No classification available.';
+  document.getElementById('classSourceNote').textContent = cls.mock ? '⚠ Mock/rule-based classifier (no GEMINI_API_KEY set)' : '✓ Live Gemini API classification';
+  document.getElementById('resultsSection').classList.remove('hidden');
+
+  // IOC Table
+  const enrichment = data.enrichment || {};
+  const tbody = document.querySelector('#iocTable tbody');
+  tbody.innerHTML='';
+  [['src_ip',data.src_ip],['dst_ip',data.dst_ip],['user',data.user],['hash',data.hash],['domain',data.domain]].forEach(([k,v])=>{
+    const rep = enrichment[k];
+    const repText = rep ? `${rep.reputation_score} (${rep.mock ? 'mock' : 'live'})` : '—';
+    tbody.innerHTML += `<tr><td class="text-slate-500">${k}</td><td class="text-cyan-300">${v || '—'}</td><td class="text-slate-400">${repText}</td></tr>`;
+  });
+  document.getElementById('iocSection').classList.remove('hidden');
+
+  // Response terminal
+  document.getElementById('responseSection').classList.remove('hidden');
+  const resp = data.response || {};
+  termLine(`Processing ${data.alert_id} at severity=${severity}`, 0);
+  const actionLines = (resp.summary || '').split('\n').filter(Boolean).map(l=>l.replace(/^- /,'').replace(/`/g,''));
+  actionLines.forEach((a,i)=>termLine(a, (i+1)*350));
+  if(!actionLines.length) termLine('Logged only. No further action taken.', 350);
+
+  // Report preview
+  document.getElementById('reportBody').innerHTML = mdToHtml(data.report_markdown);
+  document.getElementById('reportSection').classList.remove('hidden');
+
+  runBtn.disabled = false;
+  document.getElementById('resultsSection').scrollIntoView({behavior:'smooth', block:'nearest'});
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "escalation_id": "ESC-D387CA",
+  "alert_id": "demo-008",
+  "created_at": "2026-09-10T17:43:20.536341+00:00",
+  "severity": "Critical",
+  "reason": "The alert is triggered by ransomware behavior associated with user r.bandara on internal host 10.0.0.44. The file hash (e99a18c428cb38d5f260853678922e03) has a high VirusTotal reputation score of 82 with 41/70 detections identified as the LockBit malware family, while the destination IP shows a suspicious reputation score of 78 communicating with a known onion link domain.",
+  "status": "escalated"
+}

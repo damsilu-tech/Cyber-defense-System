@@ -1,0 +1,8 @@
+{
+  "escalation_id": "ESC-DDE585",
+  "alert_id": "demo-001",
+  "created_at": "2026-09-10T17:19:46.399561+00:00",
+  "severity": "Critical",
+  "reason": "[MOCK CLASSIFIER - no live AI call made] Based on a maximum enrichment reputation score of 85, this alert was rule-mapped to Critical severity. Run with GEMINI_API_KEY set for real AI-based classification.",
+  "status": "escalated"
+}

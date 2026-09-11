@@ -1,0 +1,496 @@
+[
+  {
+    "alert_id": "demo-001",
+    "timestamp": "2026-09-08T09:12:00Z",
+    "source": "EDR-sim",
+    "alert_type": "c2_beacon",
+    "src_ip": "10.0.0.15",
+    "dst_ip": "185.220.101.4",
+    "user": "j.perera",
+    "hash": null,
+    "domain": "malicious-c2-example.net",
+    "url": null,
+    "raw_payload": {
+      "id": "demo-001",
+      "time": "2026-09-08T09:12:00Z",
+      "product": "EDR-sim",
+      "signature": "c2_beacon",
+      "srcip": "10.0.0.15",
+      "destination_ip": "185.220.101.4",
+      "username": "j.perera",
+      "domain": "malicious-c2-example.net",
+      "source": "EDR-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "10.0.0.15",
+        "type": "ip",
+        "reputation_score": 85,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 17,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "dst_ip": {
+        "indicator": "185.220.101.4",
+        "type": "ip",
+        "reputation_score": 50,
+        "country": "LK",
+        "isp": "Mock-ISP",
+        "total_reports": 10,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "domain": {
+        "indicator": "malicious-c2-example.net",
+        "type": "domain",
+        "reputation_score": 75,
+        "pulse_count": 7,
+        "tags": [
+          "c2-infrastructure"
+        ],
+        "mock": true,
+        "source_api": "AlienVault OTX (mock)"
+      }
+    },
+    "classification": {
+      "severity": "High",
+      "attack_type": "C2 Beaconing",
+      "confidence_score": 90,
+      "mitre_technique": "T1071.001 - Application Layer Protocol: Web Protocols",
+      "justification": "The alert type explicitly indicates a C2 beacon, and the associated domain 'malicious-c2-example.net' has a high reputation score of 75 with the 'c2-infrastructure' tag in AlienVault OTX. Furthermore, the source IP 10.0.0.15 shows a high simulated reputation score of 85, reinforcing malicious activity. Although the enrichment data is marked as mock, the indicators strongly align with command and control behavior.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-001.md",
+    "response": {
+      "tier": "High",
+      "summary": "- Simulated isolation of `10.0.0.15`\n- Ticket created: TICKET-13F2F1",
+      "recommended_actions": "- Confirm host isolation with EDR team.\n- Reset affected user credentials.\n- Begin lateral-movement hunt from source host."
+    }
+  },
+  {
+    "alert_id": "demo-002",
+    "timestamp": "2026-09-08T09:20:00Z",
+    "source": "SIEM-sim",
+    "alert_type": "brute_force",
+    "src_ip": "203.0.113.44",
+    "dst_ip": "10.0.0.5",
+    "user": "admin",
+    "hash": null,
+    "domain": null,
+    "url": null,
+    "raw_payload": {
+      "id": "demo-002",
+      "time": "2026-09-08T09:20:00Z",
+      "product": "SIEM-sim",
+      "signature": "brute_force",
+      "srcip": "203.0.113.44",
+      "destination_ip": "10.0.0.5",
+      "username": "admin",
+      "source": "SIEM-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "203.0.113.44",
+        "type": "ip",
+        "reputation_score": 32,
+        "country": "LK",
+        "isp": "Mock-ISP",
+        "total_reports": 6,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "dst_ip": {
+        "indicator": "10.0.0.5",
+        "type": "ip",
+        "reputation_score": 37,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 7,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      }
+    },
+    "classification": {
+      "severity": "Medium",
+      "attack_type": "Credential Brute Force",
+      "confidence_score": 65,
+      "mitre_technique": "T1110 - Brute Force",
+      "justification": "The alert indicates a brute force attempt targeting the 'admin' account from source IP 203.0.113.44. The enrichment reputation scores for both source and destination IPs are ambiguous (32 and 37 respectively), resulting in a moderate confidence score while maintaining a medium severity due to the high-value target account.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-002.md",
+    "response": {
+      "tier": "Medium",
+      "summary": "- Analyst notified (mock): New Medium alert: demo-002",
+      "recommended_actions": "- Analyst should review within shift.\n- Correlate with related alerts from same source/user."
+    }
+  },
+  {
+    "alert_id": "demo-003",
+    "timestamp": "2026-09-08T09:35:00Z",
+    "source": "EDR-sim",
+    "alert_type": "malware_detection",
+    "src_ip": "10.0.0.22",
+    "dst_ip": null,
+    "user": "n.silva",
+    "hash": "44d88612fea8a8f36de82e1278abb02f",
+    "domain": null,
+    "url": null,
+    "raw_payload": {
+      "id": "demo-003",
+      "time": "2026-09-08T09:35:00Z",
+      "product": "EDR-sim",
+      "signature": "malware_detection",
+      "srcip": "10.0.0.22",
+      "sha256": "44d88612fea8a8f36de82e1278abb02f",
+      "username": "n.silva",
+      "source": "EDR-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "10.0.0.22",
+        "type": "ip",
+        "reputation_score": 71,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 14,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "hash": {
+        "indicator": "44d88612fea8a8f36de82e1278abb02f",
+        "type": "hash",
+        "reputation_score": 0,
+        "malware_family": "Emotet",
+        "detections": "0/70",
+        "mock": true,
+        "source_api": "VirusTotal (mock)"
+      }
+    },
+    "classification": {
+      "severity": "High",
+      "attack_type": "Malware Execution",
+      "confidence_score": 85,
+      "mitre_technique": "T1204 - User Execution",
+      "justification": "The alert indicates a malware detection for user n.silva on internal IP 10.0.0.22 with a known Emotet malware hash. Although the mock VirusTotal score reports 0 detections, the file hash is explicitly tagged with the 'Emotet' malware family and the source IP exhibits an elevated reputation score of 71 associated with Russian infrastructure.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-003.md",
+    "response": {
+      "tier": "High",
+      "summary": "- Simulated isolation of `10.0.0.22`\n- Ticket created: TICKET-CB3804",
+      "recommended_actions": "- Confirm host isolation with EDR team.\n- Reset affected user credentials.\n- Begin lateral-movement hunt from source host."
+    }
+  },
+  {
+    "alert_id": "demo-004",
+    "timestamp": "2026-09-08T09:41:00Z",
+    "source": "SIEM-sim",
+    "alert_type": "login_success",
+    "src_ip": "10.0.0.101",
+    "dst_ip": "10.0.0.1",
+    "user": "k.fernando",
+    "hash": null,
+    "domain": null,
+    "url": null,
+    "raw_payload": {
+      "id": "demo-004",
+      "time": "2026-09-08T09:41:00Z",
+      "product": "SIEM-sim",
+      "signature": "login_success",
+      "srcip": "10.0.0.101",
+      "destination_ip": "10.0.0.1",
+      "username": "k.fernando",
+      "source": "SIEM-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "10.0.0.101",
+        "type": "ip",
+        "reputation_score": 13,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 2,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "dst_ip": {
+        "indicator": "10.0.0.1",
+        "type": "ip",
+        "reputation_score": 3,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 0,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      }
+    },
+    "classification": {
+      "severity": "Low",
+      "attack_type": "Benign/False Positive",
+      "confidence_score": 90,
+      "mitre_technique": null,
+      "justification": "The alert represents a successful login event (login_success) between two private internal IP addresses (10.0.0.101 to 10.0.0.1). Both IP addresses have very low reputation scores (13 and 3), and standard internal authentication activity without malicious indicators strongly points to routine administrative or user behavior.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-004.md",
+    "response": {
+      "tier": "Low",
+      "summary": "- Logged only. No further action taken.",
+      "recommended_actions": "- No action required beyond logging.\n- Revisit if similar alerts cluster within 24h."
+    }
+  },
+  {
+    "alert_id": "demo-005",
+    "timestamp": "2026-09-08T09:50:00Z",
+    "source": "EmailGateway-sim",
+    "alert_type": "phishing_link_clicked",
+    "src_ip": "10.0.0.77",
+    "dst_ip": null,
+    "user": "a.jayasinghe",
+    "hash": null,
+    "domain": "secure-login-update-verify.com",
+    "url": "http://secure-login-update-verify.com/reset",
+    "raw_payload": {
+      "id": "demo-005",
+      "time": "2026-09-08T09:50:00Z",
+      "product": "EmailGateway-sim",
+      "signature": "phishing_link_clicked",
+      "srcip": "10.0.0.77",
+      "url": "http://secure-login-update-verify.com/reset",
+      "domain": "secure-login-update-verify.com",
+      "username": "a.jayasinghe",
+      "source": "EmailGateway-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "10.0.0.77",
+        "type": "ip",
+        "reputation_score": 9,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 1,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "domain": {
+        "indicator": "secure-login-update-verify.com",
+        "type": "domain",
+        "reputation_score": 33,
+        "pulse_count": 3,
+        "tags": [],
+        "mock": true,
+        "source_api": "AlienVault OTX (mock)"
+      }
+    },
+    "classification": {
+      "severity": "Medium",
+      "attack_type": "Phishing",
+      "confidence_score": 75,
+      "mitre_technique": "T1566.002 - Phishing: Spearphishing Link",
+      "justification": "User a.jayasinghe clicked a suspicious URL on a newly registered domain ('secure-login-update-verify.com') characteristic of credential harvesting. Although the domain's reputation score of 33 is ambiguous, the URL structure strongly indicates a credential update phishing lure.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-005.md",
+    "response": {
+      "tier": "Medium",
+      "summary": "- Analyst notified (mock): New Medium alert: demo-005",
+      "recommended_actions": "- Analyst should review within shift.\n- Correlate with related alerts from same source/user."
+    }
+  },
+  {
+    "alert_id": "demo-006",
+    "timestamp": "2026-09-08T10:02:00Z",
+    "source": "DLP-sim",
+    "alert_type": "large_data_transfer",
+    "src_ip": "10.0.0.30",
+    "dst_ip": "45.33.32.156",
+    "user": "svc-backup",
+    "hash": null,
+    "domain": null,
+    "url": null,
+    "raw_payload": {
+      "id": "demo-006",
+      "time": "2026-09-08T10:02:00Z",
+      "product": "DLP-sim",
+      "signature": "large_data_transfer",
+      "srcip": "10.0.0.30",
+      "destination_ip": "45.33.32.156",
+      "username": "svc-backup",
+      "source": "DLP-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "10.0.0.30",
+        "type": "ip",
+        "reputation_score": 12,
+        "country": "LK",
+        "isp": "Mock-ISP",
+        "total_reports": 2,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "dst_ip": {
+        "indicator": "45.33.32.156",
+        "type": "ip",
+        "reputation_score": 48,
+        "country": "LK",
+        "isp": "Mock-ISP",
+        "total_reports": 9,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      }
+    },
+    "classification": {
+      "severity": "Medium",
+      "attack_type": "Data Exfiltration",
+      "confidence_score": 60,
+      "mitre_technique": "T1048 - Exfiltration Over Alternative Protocol",
+      "justification": "The alert highlights a large data transfer initiated by the service account 'svc-backup' to an external IP address (45.33.32.156) with a moderate reputation score of 48. Although the indicators are mocked and the destination reputation is ambiguous, the behavior pattern warrants a medium severity classification for potential unauthorized data exfiltration.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-006.md",
+    "response": {
+      "tier": "Medium",
+      "summary": "- Analyst notified (mock): New Medium alert: demo-006",
+      "recommended_actions": "- Analyst should review within shift.\n- Correlate with related alerts from same source/user."
+    }
+  },
+  {
+    "alert_id": "demo-007",
+    "timestamp": "2026-09-08T10:10:00Z",
+    "source": "IDS-sim",
+    "alert_type": "port_scan",
+    "src_ip": "198.51.100.23",
+    "dst_ip": "10.0.0.0",
+    "user": null,
+    "hash": null,
+    "domain": null,
+    "url": null,
+    "raw_payload": {
+      "id": "demo-007",
+      "time": "2026-09-08T10:10:00Z",
+      "product": "IDS-sim",
+      "signature": "port_scan",
+      "srcip": "198.51.100.23",
+      "destination_ip": "10.0.0.0",
+      "source": "IDS-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "198.51.100.23",
+        "type": "ip",
+        "reputation_score": 45,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 9,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "dst_ip": {
+        "indicator": "10.0.0.0",
+        "type": "ip",
+        "reputation_score": 21,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 4,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      }
+    },
+    "classification": {
+      "severity": "Low",
+      "attack_type": "Reconnaissance",
+      "confidence_score": 60,
+      "mitre_technique": "T1595 - Active Scanning",
+      "justification": "The alert indicates a port scan originating from an external IP address (198.51.100.23) toward an internal destination. However, the moderate reputation score of 45 and low total reports suggest ambiguous or low-severity reconnaissance activity rather than an active breach.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-007.md",
+    "response": {
+      "tier": "Low",
+      "summary": "- Logged only. No further action taken.",
+      "recommended_actions": "- No action required beyond logging.\n- Revisit if similar alerts cluster within 24h."
+    }
+  },
+  {
+    "alert_id": "demo-008",
+    "timestamp": "2026-09-08T10:18:00Z",
+    "source": "EDR-sim",
+    "alert_type": "ransomware_behavior",
+    "src_ip": "10.0.0.44",
+    "dst_ip": "91.219.237.244",
+    "user": "r.bandara",
+    "hash": "e99a18c428cb38d5f260853678922e03",
+    "domain": "ransom-c2-payment.onion.link",
+    "url": null,
+    "raw_payload": {
+      "id": "demo-008",
+      "time": "2026-09-08T10:18:00Z",
+      "product": "EDR-sim",
+      "signature": "ransomware_behavior",
+      "srcip": "10.0.0.44",
+      "sha256": "e99a18c428cb38d5f260853678922e03",
+      "username": "r.bandara",
+      "destination_ip": "91.219.237.244",
+      "domain": "ransom-c2-payment.onion.link",
+      "source": "EDR-sim"
+    },
+    "enrichment": {
+      "src_ip": {
+        "indicator": "10.0.0.44",
+        "type": "ip",
+        "reputation_score": 7,
+        "country": "RU",
+        "isp": "Mock-ISP",
+        "total_reports": 1,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "dst_ip": {
+        "indicator": "91.219.237.244",
+        "type": "ip",
+        "reputation_score": 78,
+        "country": "LK",
+        "isp": "Mock-ISP",
+        "total_reports": 15,
+        "mock": true,
+        "source_api": "AbuseIPDB (mock)"
+      },
+      "hash": {
+        "indicator": "e99a18c428cb38d5f260853678922e03",
+        "type": "hash",
+        "reputation_score": 82,
+        "malware_family": "LockBit",
+        "detections": "41/70",
+        "mock": true,
+        "source_api": "VirusTotal (mock)"
+      },
+      "domain": {
+        "indicator": "ransom-c2-payment.onion.link",
+        "type": "domain",
+        "reputation_score": 66,
+        "pulse_count": 6,
+        "tags": [],
+        "mock": true,
+        "source_api": "AlienVault OTX (mock)"
+      }
+    },
+    "classification": {
+      "severity": "Critical",
+      "attack_type": "Malware Execution",
+      "confidence_score": 95,
+      "mitre_technique": "T1486 - Data Encrypted for Impact",
+      "justification": "The alert is triggered by ransomware behavior associated with user r.bandara on a local host. The file hash (e99a18c428cb38d5f260853678922e03) has a high reputation score of 82 and is identified as belonging to the LockBit malware family with 41/70 detections. Additionally, the destination IP has a notable reputation score of 78, and the domain indicates a ransomware C2 payment portal.",
+      "mock": false
+    },
+    "report_path": "reports\\incident_demo-008.md",
+    "response": {
+      "tier": "Critical",
+      "summary": "- Simulated IP block on `91.219.237.244`\n- Escalation created: ESC-95C583\n- On-call paged: True",
+      "recommended_actions": "- Confirm IP block at perimeter firewall.\n- Initiate incident response process.\n- Notify affected system owners and legal/compliance if data exposure suspected."
+    }
+  }
+]

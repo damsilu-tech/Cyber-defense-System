@@ -1,0 +1,8 @@
+{
+  "ticket_id": "TICKET-A0CCA7",
+  "alert_id": "demo-003",
+  "created_at": "2026-09-11T11:01:08.612590+00:00",
+  "severity": "High",
+  "summary": "Malware Execution",
+  "status": "open"
+}

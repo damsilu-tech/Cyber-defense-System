@@ -1,0 +1,149 @@
+[2026-09-09T08:58:08.554643+00:00] Processing demo-001 at severity=Critical
+[2026-09-09T08:58:08.554760+00:00] SIMULATED ACTION: firewall block rule issued for 185.220.101.4 (NOT executed against real firewall)
+[2026-09-09T08:58:08.554876+00:00] Escalation created: ESC-5B5241 (escalations/ESC-5B5241.json)
+[2026-09-09T08:58:08.554902+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-001
+[2026-09-09T08:58:08.555063+00:00] Processing demo-002 at severity=Medium
+[2026-09-09T08:58:08.555091+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-09T08:58:08.555244+00:00] Processing demo-003 at severity=High
+[2026-09-09T08:58:08.555301+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-09T08:58:08.555392+00:00] Mock ticket created: TICKET-F2A841 (tickets/TICKET-F2A841.json)
+[2026-09-09T08:58:08.555512+00:00] Processing demo-004 at severity=Low
+[2026-09-09T08:58:08.555650+00:00] Processing demo-005 at severity=Low
+[2026-09-09T08:58:08.555802+00:00] Processing demo-006 at severity=Medium
+[2026-09-09T08:58:08.555828+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-09T08:58:08.555966+00:00] Processing demo-007 at severity=Medium
+[2026-09-09T08:58:08.556010+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-007
+[2026-09-09T08:58:08.556140+00:00] Processing demo-008 at severity=High
+[2026-09-09T08:58:08.556183+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.44 (NOT executed against real EDR)
+[2026-09-09T08:58:08.556491+00:00] Mock ticket created: TICKET-6F870E (tickets/TICKET-6F870E.json)
+[2026-09-09T08:58:08.556604+00:00] Processing demo-101 at severity=Medium
+[2026-09-09T08:58:08.556634+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-101
+[2026-09-09T08:58:08.556755+00:00] Processing demo-102 at severity=Critical
+[2026-09-09T08:58:08.556783+00:00] SIMULATED ACTION: firewall block rule issued for 10.0.0.61 (NOT executed against real firewall)
+[2026-09-09T08:58:08.557195+00:00] Escalation created: ESC-BDC9DE (escalations/ESC-BDC9DE.json)
+[2026-09-09T08:58:08.557227+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-102
+[2026-09-09T08:58:08.557326+00:00] Processing demo-103 at severity=High
+[2026-09-09T08:58:08.557344+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.18 (NOT executed against real EDR)
+[2026-09-09T08:58:08.557413+00:00] Mock ticket created: TICKET-D9A9F0 (tickets/TICKET-D9A9F0.json)
+[2026-09-09T08:58:08.557495+00:00] Processing demo-104 at severity=Medium
+[2026-09-09T08:58:08.557511+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-104
+[2026-09-09T08:58:08.557785+00:00] Processing demo-105 at severity=Medium
+[2026-09-09T08:58:08.557823+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-105
+[2026-09-10T15:29:12.538083+00:00] Processing demo-001 at severity=Critical
+[2026-09-10T15:29:12.544539+00:00] SIMULATED ACTION: firewall block rule issued for 185.220.101.4 (NOT executed against real firewall)
+[2026-09-10T15:29:12.546977+00:00] Escalation created: ESC-66A361 (escalations\ESC-66A361.json)
+[2026-09-10T15:29:12.549152+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-001
+[2026-09-10T15:29:13.248397+00:00] Processing demo-002 at severity=Medium
+[2026-09-10T15:29:13.250189+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-10T15:29:14.096697+00:00] Processing demo-003 at severity=High
+[2026-09-10T15:29:14.099155+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-10T15:29:14.107334+00:00] Mock ticket created: TICKET-38AB56 (tickets\TICKET-38AB56.json)
+[2026-09-10T15:29:15.303366+00:00] Processing demo-004 at severity=Low
+[2026-09-10T15:29:15.983823+00:00] Processing demo-005 at severity=Low
+[2026-09-10T15:29:17.287254+00:00] Processing demo-006 at severity=Medium
+[2026-09-10T15:29:17.289544+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-10T15:29:17.976820+00:00] Processing demo-007 at severity=Medium
+[2026-09-10T15:29:17.980471+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-007
+[2026-09-10T15:29:18.997668+00:00] Processing demo-008 at severity=High
+[2026-09-10T15:29:19.000063+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.44 (NOT executed against real EDR)
+[2026-09-10T15:29:19.005928+00:00] Mock ticket created: TICKET-D3D18E (tickets\TICKET-D3D18E.json)
+[2026-09-10T17:10:56.563079+00:00] Processing demo-001 at severity=Critical
+[2026-09-10T17:10:56.563117+00:00] SIMULATED ACTION: firewall block rule issued for 185.220.101.4 (NOT executed against real firewall)
+[2026-09-10T17:10:56.563307+00:00] Escalation created: ESC-EEE3CD (escalations/ESC-EEE3CD.json)
+[2026-09-10T17:10:56.563338+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-001
+[2026-09-10T17:10:56.563514+00:00] Processing demo-002 at severity=Medium
+[2026-09-10T17:10:56.563541+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-10T17:10:56.563679+00:00] Processing demo-003 at severity=High
+[2026-09-10T17:10:56.563719+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-10T17:10:56.564205+00:00] Mock ticket created: TICKET-959E42 (tickets/TICKET-959E42.json)
+[2026-09-10T17:10:56.564347+00:00] Processing demo-004 at severity=Low
+[2026-09-10T17:10:56.564481+00:00] Processing demo-005 at severity=Low
+[2026-09-10T17:10:56.564612+00:00] Processing demo-006 at severity=Medium
+[2026-09-10T17:10:56.564675+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-10T17:10:56.564782+00:00] Processing demo-007 at severity=Medium
+[2026-09-10T17:10:56.564830+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-007
+[2026-09-10T17:10:56.565008+00:00] Processing demo-008 at severity=High
+[2026-09-10T17:10:56.565037+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.44 (NOT executed against real EDR)
+[2026-09-10T17:10:56.565146+00:00] Mock ticket created: TICKET-A3626C (tickets/TICKET-A3626C.json)
+[2026-09-10T17:11:44.964899+00:00] Processing demo-008 at severity=High
+[2026-09-10T17:11:44.965049+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.44 (NOT executed against real EDR)
+[2026-09-10T17:11:44.965321+00:00] Mock ticket created: TICKET-CA6A43 (tickets/TICKET-CA6A43.json)
+[2026-09-10T17:22:59.163467+00:00] Processing demo-008 at severity=High
+[2026-09-10T17:22:59.163668+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.44 (NOT executed against real EDR)
+[2026-09-10T17:22:59.163905+00:00] Mock ticket created: TICKET-74491D (tickets/TICKET-74491D.json)
+[2026-09-10T17:38:49.095270+00:00] Processing demo-008 at severity=Critical
+[2026-09-10T17:38:49.097451+00:00] SIMULATED ACTION: firewall block rule issued for 91.219.237.244 (NOT executed against real firewall)
+[2026-09-10T17:38:49.103607+00:00] Escalation created: ESC-B29C5C (escalations\ESC-B29C5C.json)
+[2026-09-10T17:38:49.105821+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-008
+[2026-09-10T17:42:24.540775+00:00] Processing demo-001 at severity=High
+[2026-09-10T17:42:24.544187+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.15 (NOT executed against real EDR)
+[2026-09-10T17:42:24.550814+00:00] Mock ticket created: TICKET-9F0D9B (tickets\TICKET-9F0D9B.json)
+[2026-09-10T17:42:40.692270+00:00] Processing demo-002 at severity=Medium
+[2026-09-10T17:42:40.692827+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-10T17:42:43.727420+00:00] Processing demo-003 at severity=High
+[2026-09-10T17:42:43.729668+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-10T17:42:43.734462+00:00] Mock ticket created: TICKET-32217B (tickets\TICKET-32217B.json)
+[2026-09-10T17:43:02.738205+00:00] Processing demo-004 at severity=Low
+[2026-09-10T17:43:09.478790+00:00] Processing demo-005 at severity=Medium
+[2026-09-10T17:43:09.481046+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-005
+[2026-09-10T17:43:12.083141+00:00] Processing demo-006 at severity=Medium
+[2026-09-10T17:43:12.085245+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-10T17:43:17.614281+00:00] Processing demo-007 at severity=Low
+[2026-09-10T17:43:20.530843+00:00] Processing demo-008 at severity=Critical
+[2026-09-10T17:43:20.533063+00:00] SIMULATED ACTION: firewall block rule issued for 91.219.237.244 (NOT executed against real firewall)
+[2026-09-10T17:43:20.565693+00:00] Escalation created: ESC-D387CA (escalations\ESC-D387CA.json)
+[2026-09-10T17:43:20.567808+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-008
+[2026-09-11T10:52:05.760646+00:00] Processing demo-001 at severity=Critical
+[2026-09-11T10:52:05.768421+00:00] SIMULATED ACTION: firewall block rule issued for 185.220.101.4 (NOT executed against real firewall)
+[2026-09-11T10:52:05.769925+00:00] Escalation created: ESC-819298 (escalations\ESC-819298.json)
+[2026-09-11T10:52:05.770536+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-001
+[2026-09-11T10:52:08.121917+00:00] Processing demo-002 at severity=Medium
+[2026-09-11T10:52:08.123078+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-11T10:52:11.823937+00:00] Processing demo-003 at severity=High
+[2026-09-11T10:52:11.826390+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-11T10:52:11.831930+00:00] Mock ticket created: TICKET-051E61 (tickets\TICKET-051E61.json)
+[2026-09-11T10:52:15.536342+00:00] Processing demo-004 at severity=Low
+[2026-09-11T10:52:17.608013+00:00] Processing demo-005 at severity=Low
+[2026-09-11T10:52:21.155072+00:00] Processing demo-006 at severity=Medium
+[2026-09-11T10:52:21.156078+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-11T10:52:24.426116+00:00] Processing demo-007 at severity=Medium
+[2026-09-11T10:52:24.429250+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-007
+[2026-09-11T10:52:26.234219+00:00] Processing demo-008 at severity=High
+[2026-09-11T10:52:26.235899+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.44 (NOT executed against real EDR)
+[2026-09-11T10:52:26.239749+00:00] Mock ticket created: TICKET-40A9B6 (tickets\TICKET-40A9B6.json)
+[2026-09-11T11:00:57.387210+00:00] Processing demo-001 at severity=High
+[2026-09-11T11:00:57.395727+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.15 (NOT executed against real EDR)
+[2026-09-11T11:00:57.401503+00:00] Mock ticket created: TICKET-5DAD9C (tickets\TICKET-5DAD9C.json)
+[2026-09-11T11:01:00.697048+00:00] Processing demo-002 at severity=Medium
+[2026-09-11T11:01:00.699060+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-11T11:01:08.607577+00:00] Processing demo-003 at severity=High
+[2026-09-11T11:01:08.609679+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-11T11:01:08.617109+00:00] Mock ticket created: TICKET-A0CCA7 (tickets\TICKET-A0CCA7.json)
+[2026-09-11T11:01:15.534211+00:00] Processing demo-004 at severity=Low
+[2026-09-11T11:01:21.561326+00:00] Processing demo-005 at severity=Medium
+[2026-09-11T11:01:21.563473+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-005
+[2026-09-11T11:01:25.597298+00:00] Processing demo-006 at severity=Medium
+[2026-09-11T11:01:25.601465+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-11T11:01:29.498660+00:00] Processing demo-007 at severity=Low
+[2026-09-11T11:01:35.668187+00:00] Processing demo-008 at severity=Critical
+[2026-09-11T11:01:35.670317+00:00] SIMULATED ACTION: firewall block rule issued for 91.219.237.244 (NOT executed against real firewall)
+[2026-09-11T11:01:35.713120+00:00] Escalation created: ESC-8D438F (escalations\ESC-8D438F.json)
+[2026-09-11T11:01:35.715540+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-008
+[2026-09-11T11:06:49.889855+00:00] Processing demo-001 at severity=High
+[2026-09-11T11:06:49.890445+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.15 (NOT executed against real EDR)
+[2026-09-11T11:06:49.891726+00:00] Mock ticket created: TICKET-13F2F1 (tickets\TICKET-13F2F1.json)
+[2026-09-11T11:06:53.150238+00:00] Processing demo-002 at severity=Medium
+[2026-09-11T11:06:53.152399+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-002
+[2026-09-11T11:06:56.291808+00:00] Processing demo-003 at severity=High
+[2026-09-11T11:06:56.294009+00:00] SIMULATED ACTION: host isolation command issued for 10.0.0.22 (NOT executed against real EDR)
+[2026-09-11T11:06:56.308482+00:00] Mock ticket created: TICKET-CB3804 (tickets\TICKET-CB3804.json)
+[2026-09-11T11:06:59.670422+00:00] Processing demo-004 at severity=Low
+[2026-09-11T11:07:04.005870+00:00] Processing demo-005 at severity=Medium
+[2026-09-11T11:07:04.007917+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-005
+[2026-09-11T11:07:07.572328+00:00] Processing demo-006 at severity=Medium
+[2026-09-11T11:07:07.574346+00:00] SIMULATED NOTIFY: analyst paged (Slack/email mock) re: demo-006
+[2026-09-11T11:07:12.957135+00:00] Processing demo-007 at severity=Low
+[2026-09-11T11:07:16.837328+00:00] Processing demo-008 at severity=Critical
+[2026-09-11T11:07:16.839461+00:00] SIMULATED ACTION: firewall block rule issued for 91.219.237.244 (NOT executed against real firewall)
+[2026-09-11T11:07:16.844736+00:00] Escalation created: ESC-95C583 (escalations\ESC-95C583.json)
+[2026-09-11T11:07:16.854099+00:00] SIMULATED PAGE: on-call engineer paged (mock PagerDuty) re: demo-008

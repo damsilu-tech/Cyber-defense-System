@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: cyberdefense-dashboard
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ABUSEIPDB_API_KEY
+        sync: false
+      - key: VIRUSTOTAL_API_KEY
+        sync: false
+      - key: OTX_API_KEY
+        sync: false
+      - key: CYBERDEFENSE_MOCK
+        value: "0"
